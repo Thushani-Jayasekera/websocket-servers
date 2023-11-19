@@ -1,0 +1,21 @@
+{
+    "name": "your-name/websocket-server",
+    "description": "A simple PHP WebSocket server",
+    "type": "project",
+    "require": {
+        "cboden/ratchet": "^0.4.3",
+        "react/socket": "^1.6"
+    },
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
