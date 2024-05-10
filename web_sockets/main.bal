@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerina/websocket;
 
-service /chat on new websocket:Listener(8085) {
+service /chat on new websocket:Listener(9090) {
 
     resource function get .() returns websocket:Service {
         // Accept the WebSocket upgrade by returning a `websocket:Service`.
