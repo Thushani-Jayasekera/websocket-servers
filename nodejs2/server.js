@@ -5,6 +5,7 @@ const url = require('url');
 
 // Create a simple HTTP server
 const server = http.createServer((req, res) => {
+    console.log("creating http server", JSON.stringify(request.headers));
     if (req.url === '/') {
         fs.readFile('websockets.html', (err, data) => {
             if (err) {
@@ -37,6 +38,7 @@ wss.on('connection', function connection(ws) {
 
 // Handle upgrade manually for '/echo' path
 server.on('upgrade', function upgrade(request, socket, head) {
+    console.log("on upgrade", JSON.stringify(request.headers));
     const pathname = url.parse(request.url).pathname;
 
     if (pathname === '/echo') {
