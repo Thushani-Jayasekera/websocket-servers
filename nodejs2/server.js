@@ -43,19 +43,10 @@ server.on('upgrade', function upgrade(request, socket, head) {
 
     console.log("path name is", pathname);
 
-    if (pathname === '/echo') {
+    if (pathname === '/echo' || pathname === '/echo/') {
         wss.handleUpgrade(request, socket, head, function done(ws) {
-            try {
-                ws.on('error', function error(err) {
-                    console.error('WebSocket error:', err);
-                });
-
-                wss.emit('connection', ws, request);
-            } catch (err) {
-                console.error('Upgrade error:', err);
-                socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
-                socket.destroy();
-            }
+            wss.emit('connection', ws, request);
+        
         });
     } else {
         socket.destroy();
