@@ -5,7 +5,6 @@ const url = require('url');
 
 // Create a simple HTTP server
 const server = http.createServer((req, res) => {
-    console.log("creating http server", JSON.stringify(request.headers));
     if (req.url === '/') {
         fs.readFile('websockets.html', (err, data) => {
             if (err) {
