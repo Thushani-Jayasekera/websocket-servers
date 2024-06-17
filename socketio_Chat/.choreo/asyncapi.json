@@ -1,0 +1,41 @@
+{
+    "asyncapi": "2.0.0",
+    "info": {
+        "title": "SocketIOApp",
+        "version": "v1.0"
+    },
+    "servers": {
+        "production": {
+            "url": "https://14524e10-f8f6-4699-b7ea-39966c4a358b-dev.e1-us-east-azure.preview-dv.choreoapis.dev/websocketproject/socketioapp/v1.0/",
+            "protocol": "websocket"
+        }
+    },
+    "channels": {
+        "/*": {
+            "publish": {
+
+            },
+            "subscribe": {
+
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "oauth2": {
+                "type": "oauth2",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "http://localhost:9999",
+                        "scopes": {
+
+                        },
+                        "x-scopes-bindings": {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
