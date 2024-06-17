@@ -3,7 +3,13 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+
+const io = new Server(server,{
+              transports: ['websocket'],
+              // path: 'ws/api',
+              allowUpgrades: true,
+              upgradeTimeout: 30000,
+});
 
 app.get('/', (req, res) => {
   console.log("sending index.html");
