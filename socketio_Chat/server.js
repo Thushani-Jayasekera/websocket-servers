@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
   console.log("sending index.html");
 });
 
+// comment 2
+
 io.on('connection', (socket) => {
     console.log('a user connected');
 
