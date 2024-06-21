@@ -11,7 +11,7 @@ const io = new Server(server,{
               upgradeTimeout: 30000,
 });
 
-// add comment 1
+
 app.get('/', (req, res) => {
   console.log("sending index.html");
 });
