@@ -27,4 +27,8 @@ service class ChatService {
         log:printError("An error occurred", 'error = err);
     }
 
+    remote function onClose(websocket:Caller caller, int statusCode, string reason) {
+        io:println(string `Client closed connection with ${statusCode} because of ${reason} ` , caller.getConnectionId());
+    }
+
 }
