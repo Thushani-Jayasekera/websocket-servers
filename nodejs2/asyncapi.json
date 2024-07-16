@@ -1,0 +1,191 @@
+{
+  "asyncapi": "2.2.0",
+  "info": {
+    "title": "Socket.IO chat demo service",
+    "version": "1.0.0",
+    "description": "This is one of the get-started demos presented in the socket.io website: https://socket.io/demos/chat/"
+  },
+  "servers": {
+    "demo": {
+      "url": "socketio-chat-h9jt.herokuapp.com/socket.io",
+      "protocol": "wss"
+    }
+  },
+  "channels": {
+    "/": {
+      "publish": {
+        "message": {
+          "oneOf": [
+            { "$ref": "#/components/messages/NewMessage" },
+            { "$ref": "#/components/messages/Typing" },
+            { "$ref": "#/components/messages/StopTyping" },
+            { "$ref": "#/components/messages/AddUser" }
+          ]
+        }
+      },
+      "subscribe": {
+        "message": {
+          "oneOf": [
+            { "$ref": "#/components/messages/NewMessageReceived" },
+            { "$ref": "#/components/messages/UserTyping" },
+            { "$ref": "#/components/messages/UserStopTyping" },
+            { "$ref": "#/components/messages/UserJoined" },
+            { "$ref": "#/components/messages/UserLeft" },
+            { "$ref": "#/components/messages/LogIn" }
+          ]
+        }
+      },
+      "x-handlers": {
+        "disconnect": "app.disconnect"
+      }
+    },
+    "/admin": {
+      "subscribe": {
+        "message": { "$ref": "#/components/messages/ServerMetric" }
+      },
+      "bindings": { "$ref": "#/components/channelBindings/AuthenticatedWsBindings" },
+      "x-handlers": {
+        "connect": "app.admin_connect"
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "NewMessage": {
+        "name": "new message",
+        "x-handler": "app.new_message",
+        "payload": { "type": "string" }
+      },
+      "Typing": {
+        "name": "typing",
+        "x-handler": "app.message_typing"
+      },
+      "StopTyping": {
+        "name": "stop typing",
+        "x-handler": "app.stop_typing"
+      },
+      "AddUser": {
+        "name": "add user",
+        "payload": { "type": "string" },
+        "x-handler": "app.add_user",
+        "x-ack": {
+          "args": {
+            "type": "object",
+            "properties": {
+              "error": { "type": ["string", "null"] }
+            }
+          }
+        }
+      },
+      "NewMessageReceived": {
+        "name": "new message",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "format": "first_name"
+            },
+            "message": {
+              "type": "string",
+              "format": "sentence"
+            }
+          },
+          "required": ["username", "message"]
+        }
+      },
+      "UserTyping": {
+        "name": "typing",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "format": "first_name"
+            }
+          },
+          "required": ["username"]
+        }
+      },
+      "UserStopTyping": {
+        "name": "stop typing",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "format": "first_name"
+            }
+          },
+          "required": ["username"]
+        }
+      },
+      "UserJoined": {
+        "name": "user joined",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "format": "first_name"
+            },
+            "numUsers": {
+              "type": "integer"
+            }
+          },
+          "required": ["username", "numUsers"]
+        }
+      },
+      "UserLeft": {
+        "name": "user left",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "format": "first_name"
+            },
+            "numUsers": {
+              "type": "integer"
+            }
+          },
+          "required": ["username", "numUsers"]
+        }
+      },
+      "LogIn": {
+        "name": "login",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "numUsers": { "type": "integer" }
+          },
+          "required": ["numUsers"]
+        }
+      },
+      "ServerMetric": {
+        "name": "server metric",
+        "payload": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "value": { "type": "number" }
+          },
+          "required": ["name", "value"]
+        }
+      }
+    },
+    "channelBindings": {
+      "AuthenticatedWsBindings": {
+        "ws": {
+          "query": {
+            "type": "object",
+            "properties": {
+              "token": { "type": "string" }
+            },
+            "required": ["token"]
+          }
+        }
+      }
+    }
+  }
+}
