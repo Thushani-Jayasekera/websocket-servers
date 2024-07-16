@@ -19,6 +19,36 @@ var upgrader = websocket.Upgrader{
 
 func main() {
 	http.HandleFunc("/echo", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("WebSocket endpoint hit")
+		// Upgrade HTTP server connection to the WebSocket protocol
+		conn, err := upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			log.Printf("error upgrading connection: %v", err)
+			return
+		}
+		defer conn.Close() // Ensure the connection is closed when the function returns
+
+		for {
+			// Read message from browser
+			msgType, msg, err := conn.ReadMessage()
+			if err != nil {
+				log.Printf("error reading message: %v", err)
+				break // Exit the loop if there's an error
+			}
+
+			// Print the message to the console
+			fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), string(msg))
+
+			// Write message back to browser
+			if err = conn.WriteMessage(msgType, msg); err != nil {
+				log.Printf("error writing message: %v", err)
+				break // Exit the loop if there's an error
+			}
+		}
+	})
+
+	http.HandleFunc("/echo/new", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("WebSocket new endpoint hit")
 		// Upgrade HTTP server connection to the WebSocket protocol
 		conn, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
