@@ -7,7 +7,7 @@ public function main() returns error? {
 
     time:Utc startTime = time:utcNow();
     // Create a new WebSocket client.
-    websocket:Client chatClient = check new ( "ws://websocketproject-3275271155:9090/chat",
+    websocket:Client chatClient = check new ( "wss://61fc25eb-66b2-4f09-8b21-68fee9e0e03f-dev-internal.e1-us-east-azure.internal.choreoapis.dev/mediationproject/requestinforest/orgwebsocket-org-5cd/v1.0",
         //"wss://3ea87e83-4b86-45d2-8bd3-6a0348ea25d7-dev.e1-us-east-azure.perf.choreoapis.dev/websockettests/websocketperf8/websocket-5cd/v1.0",
         secureSocket = {enable: false} );
 
