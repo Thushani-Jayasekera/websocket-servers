@@ -33,6 +33,8 @@ endpoints:
   # This is mandatory if the endpoint type is set to REST or GraphQL.
   context: /chat
 
+  schemaFilePath: asyncapi.yaml
+
 - name: ProjectWebSocket
   # +required Numeric port value that gets exposed via this endpoint
   port: 9090
