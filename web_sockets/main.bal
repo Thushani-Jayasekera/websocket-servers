@@ -5,9 +5,9 @@ import ballerina/tcp;
 
 service /chat on new websocket:Listener(9090) {
 
-    resource function get .() returns websocket:Service {
+    resource function get v0/rust/servers/[string serverId]/events/started() returns websocket:Service {
         // Accept the WebSocket upgrade by returning a `websocket:Service`.
-        io:println("New WebSocket connection");
+        io:println("New WebSocket connection", serverId);
         return new ChatService();
     }
 }
