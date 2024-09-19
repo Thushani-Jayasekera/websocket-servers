@@ -81,8 +81,8 @@ func main() {
 	})
 
 	// Start the HTTP server on port 8009
-	log.Println("Server started on port 8009")
-	err := http.ListenAndServe(":8009", nil)
+	log.Println("Server started on port 6789")
+	err := http.ListenAndServe(":6789", nil)
 	if err != nil {
 		log.Fatalf("error starting server: %v", err)
 	}
