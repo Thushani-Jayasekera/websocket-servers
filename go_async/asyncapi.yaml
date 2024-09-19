@@ -1,0 +1,60 @@
+asyncapi: '2.6.0'
+info:
+  title: Simple WebSocket API
+  version: '1.0.0'
+  description: A simple WebSocket API that echoes messages back to the client.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  websocketServer:
+    url: ws://localhost:6789
+    protocol: wss
+    description: WebSocket server running on localhost.
+
+channels:
+  /echo:
+    description: Channel for sending and receiving echo messages.
+    subscribe:
+      operationId: receiveMessage
+      summary: Receive a message
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            message:
+              type: string
+              description: The message sent by the client.
+    publish:
+      operationId: sendMessage
+      summary: Send an echo message
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            message:
+              type: string
+              description: The echoed message sent back to the client.
+
+components:
+  messages:
+    Message:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          message:
+            type: string
+            description: The message content.
+
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+
+tags:
+  - name: echo
+    description: Operations related to echoing messages.
