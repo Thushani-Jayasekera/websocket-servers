@@ -19,20 +19,30 @@ version: 0.1
 
 # +required List of endpoints to create
 endpoints:
-# +required Unique name for the endpoint. (This name will be used when generating the managed API)
-  - name: WebsocketHelloAPI
-    # +required Numeric port value that gets exposed via this endpoint
-    port: 8009
-    # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
-    # Allowed values: REST, GraphQL, GRPC
-    type: WS
-    # +optional Network level visibility of this endpoint. Defaults to Project
-    # Accepted values: Project|Organization|Public.
-    networkVisibility: Public
-    # +optional Context (base path) of the API that is exposed via this endpoint.
-    # This is mandatory if the endpoint type is set to REST or GraphQL.
+  # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+- name: GoWebSocket
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8009
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Public
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /echo
 
-    # represents context relevant to the service
-    context: /echo
-
-    schemaFilePath: asyncapi.yaml
+  schemaFilePath: asyncapi.yaml
+- name: GoWebSocket-Internal
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8009
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Project
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /echo
