@@ -33,4 +33,4 @@ endpoints:
   # This is mandatory if the endpoint type is set to REST or GraphQL.
   context: /echo
 
-  schemaFilePath: gowebsocket.yaml
+  schemaFilePath: websocket.yaml
