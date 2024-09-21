@@ -1,4 +1,4 @@
-asyncapi: '2.6.0'
+asyncapi: '2.0.0'
 info:
   title: Simple WebSocket API
   version: 1.0.0
