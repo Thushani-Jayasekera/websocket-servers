@@ -93,7 +93,7 @@ async def send_updates(ws):
 
 async def start_server():
     """Start WebSocket server"""
-    server = await websockets.serve(subscribe, "localhost", 9090)
+    server = await websockets.serve(subscribe, "0.0.0.0", 9090)
     print("WebSocket server started on ws://localhost:9090")
     await server.wait_closed()
 
