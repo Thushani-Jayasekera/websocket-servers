@@ -1,0 +1,409 @@
+asyncapi: "2.5.0"
+
+#
+# Details about Kraken and their WebSocket API
+#
+info:
+  title: Kraken Book Channel API
+  version: "1.0.0"
+  contact:
+    name: Kraken
+    url: https://www.kraken.com/
+  description: |
+    The channel book pushes order book snapshots and real-time updates.
+
+    Subscriptions to channel book can be made for multiple symbols at once. They are individually confirmed and responded to.
+
+#
+# Link to the official docs from Kraken that were referenced
+# while developing this AsyncAPI file.
+#
+externalDocs:
+  url: https://docs.kraken.com/websockets-v2/#book
+
+#
+# Details on how to connect to the application
+#
+servers:
+  public:
+    url: ws://ws.kraken.com
+    protocol: ws
+
+#
+# Details about all the channels that you can listen to or send to messages
+#
+channels:
+  # All interactions with the Kraken WebSocket API happen on a single channel endpoint
+  /v2:
+    bindings:
+      ws:
+        bindingVersion: 0.1.0
+    # Specify the message schemas that Kraken can send to the client
+    publish:
+      summary: Receive messages from Kraken API
+      message:
+        messageId: publishV2
+        $ref: "#/components/messages/publish"
+    # Specify the message schemas that the client can send to Kraken
+    subscribe:
+      summary: Subscribe to a specific channel using specified parameters.
+      message:
+        messageId: subscribeV2
+        $ref: "#/components/messages/subscribe"
+
+#
+# All reusable parts for readability and staying DRY
+#
+components:
+  messages:
+    publish:
+      name: publish
+      summary: Responses that can be returned after a client subscribes to the book channel
+      description: |
+        The following messages can be returned by the server when a client subscribes to the `book` channel.
+      payload:
+        # Kraken can send back any one of these messages on the channel
+        anyOf:
+          - bookSnapshot:
+            $ref: "#/components/schemas/snapshot"
+          - bookUpdate:
+            $ref: "#/components/schemas/bookUpdate"
+          - subscribeResponse:
+            $ref: "#/components/schemas/subscribeResponse"
+      examples:
+        - name: snapshotExample
+          summary: Example of a snapshot message sent to clients subscribed to the book channel.
+          payload:
+            channel: book
+            type: snapshot
+            data:
+              - asks:
+                  - price: 34726.4
+                    qty: 0.25
+                  - price: 34727.7
+                    qty: 0.21
+                  - price: 34727.8
+                    qty: 0.05
+                  - price: 34731.6
+                    qty: 0.3459
+                  - price: 34731.7
+                    qty: 0.07103557
+                  - price: 34731.9
+                    qty: 0.28802536
+                  - price: 34733
+                    qty: 0.72004074
+                  - price: 34736.2
+                    qty: 0.31988209
+                  - price: 34738
+                    qty: 0.143
+                  - price: 34739
+                    qty: 0.24041
+                bids:
+                  - price: 34717.6
+                    qty: 0.13
+                  - price: 34714.1
+                    qty: 0.08572098
+                  - price: 34713.9
+                    qty: 0.38
+                  - price: 34712.6
+                    qty: 0.028808
+                  - price: 34711.8
+                    qty: 0.86
+                  - price: 34710.2
+                    qty: 1.67978564
+                  - price: 34710.0
+                    qty: 0.71990644
+                  - price: 34709.3
+                    qty: 0.26085746
+                  - price: 34707.9
+                    qty: 0.16037166
+                  - price: 34707.8
+                    qty: 0.05682871
+                checksum: 2645840827
+                symbol: "BTC/USD"
+        - name: bookUpdateExample
+          summary: Example of an update message sent to clients subscribed to the book channel.
+          payload:
+            channel: book
+            type: update
+            data:
+              - asks:
+                  - price: 34726.4
+                    qty: 0
+                  - price: 34739.7
+                    qty: 2.1541
+                bids: []
+                checksum: 4022926185
+                symbol: "BTC/USD"
+                timestamp: "2022-06-13T08:09:10.123456Z"
+        - name: subscribeResponseExample
+          summary: Message that is sent upon subscribing to the book channel
+          payload:
+            method: "subscribe"
+            result:
+              channel: "book"
+              depth: 10
+              snapshot: false
+              symbol: "BTC/USD"
+            success: true
+            time_in: "2023-01-04T03:44:35.5312190Z"
+            time_out: "2023-01-04T03:44:35.5312650Z"
+    subscribe:
+      name: subscribe
+      summary: Subscribes to updates for the specified symbol(s).
+      description: |
+        Subscribes the client to order book snapshots and real-time updates. 
+
+        Subscriptions to `book` can be made for multiple symbols at once. They are individually confirmed and responded to.
+      payload:
+        $ref: "#/components/schemas/subscribe"
+      examples:
+        - name: subscribeBook
+          summary: Example of a subscribe message for the "BTC/USD" symbol.
+          payload:
+            method: subscribe
+            params:
+              channel: book
+              depth: 10
+              snapshot: true
+              symbol:
+                - "BTC/USD"
+            req_id: 1234567890
+  # Place schema objects here so that you can break up message schema definitions and avoiding
+  # duplicating schemas in your AsyncAPI file
+  schemas:
+    # Schema representing the subscribe message that the client can send to Kraken
+    subscribe:
+      type: object
+      properties:
+        method:
+          type: string
+          description: |
+            `subscribe` method name
+        params:
+          $ref: "#/components/schemas/params"
+          description: Parameters for the given `subscribe` method.
+        req_id:
+          type: integer
+          description: |
+            Client originated request identifier sent as acknowledgement in the response message.
+      required:
+        - method
+        - params
+    # Schema representing the response message that is sent by Kraken to the client after the client
+    # has subscribed.
+    subscribeResponse:
+      type: object
+      properties:
+        method:
+          type: string
+          description: |
+            `subscribe` method name.
+          const: subscribe
+        result:
+          description: The parameters used.
+          $ref: "#/components/schemas/result"
+        sucess:
+          type: boolean
+          description: Whether the subscription was successful or not
+        time_in:
+          type: string
+          description: The time that the subscribe request was received
+        time_out:
+          type: string
+          description: The time that the response to the subscribe request was sent.
+        req_id:
+          type: integer
+          description: |
+            Client originated request identifier sent as acknowledgement in the response message.
+      required:
+        - method
+        - result
+        - success
+        - time_in
+        - time_out
+    # Schema for the `params` property present in the `subscribe` schema above
+    params:
+      allOf:
+        - $ref: "#/components/schemas/commonParamsResult"
+        - type: object
+          properties:
+            symbol:
+              type: array
+              description: |
+                Symbol(s) to subscribe to.
+
+                Each symbol should be in the format `CCY1/CCY2`.
+    # Schema for the `result` property present in the `subscribeResponse` schema above
+    result:
+      allOf:
+        - $ref: "#/components/schemas/commonParamsResult"
+        - type: object
+          properties:
+            symbol:
+              type: string
+              description: The symbol that was subscribed to
+    # Schema with common properties that are shared by both the `params` and `result`
+    # schemas above.
+    commonParamsResult:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: |
+            `book` channel name.
+          const: book
+        depth:
+          type: integer
+          description: |
+            Book depth for subscription.
+
+            **Accepted Values**
+            - `10`
+            - `25`
+            - `100`
+            - `500`
+            - `1000`
+
+            **Default Value**
+            - `10`
+        snapshot:
+          type: boolean
+          description: |
+            Request a snapshot after subscribing.
+
+            **Default Value**
+            - `true`
+      required:
+        - channel
+        - symbol
+    # Schema for the snapshot response message that Kraken can send to the client
+    snapshot:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: |
+            `book` channel name.
+          const: book
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/snapshotData"
+          description: |
+            The `snapshot` data payload.
+        type:
+          type: string
+          description: |
+            The `snapshot` data payload type.
+          const: snapshot
+      required:
+        - channel
+        - data
+        - type
+    # Schema for the `data` property in the `snapshot` schema above
+    snapshotData:
+      type: object
+      properties:
+        asks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ask"
+          description: The top 10 asks.
+        bids:
+          type: array
+          items:
+            $ref: "#/components/schemas/bid"
+          description: The top 10 bids.
+        checksum:
+          type: integer
+          description: CRC32 checksum for the top 10 bids and asks
+        symbol:
+          type: string
+          description: The relevant symbol
+      required:
+        - asks
+        - bids
+        - checksum
+        - symbol
+    # Schema for an update response message that Kraken can send to the client
+    bookUpdate:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: |
+            `book` channel name.
+          const: book
+        data:
+          type: array
+          description: |
+            The `update` data payload.
+          items:
+            $ref: "#/components/schemas/bookUpdateData"
+        type:
+          type: string
+          description: |
+            The `update` data payload type.
+          const: update
+      required:
+        - channel
+        - data
+        - type
+    # Schema for the `data` property in the `bookUpdate` schema above
+    bookUpdateData:
+      type: object
+      properties:
+        asks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ask"
+          description: |
+            The top 10 asks. _Note:_ can be empty if no updates.
+        bids:
+          type: array
+          items:
+            $ref: "#/components/schemas/bid"
+          description: |
+            The top 10 bids. _Note:_ can be empty if no updates.
+        checksum:
+          type: integer
+          description: CRC32 checksum for the top 10 bids and asks.
+        symbol:
+          type: string
+          description: The relevant symbol.
+        timestamp:
+          type: string
+          description: The book order update timestamp (RFC3339).
+      required:
+        - asks
+        - bids
+        - checksum
+        - symbol
+        - timestamp
+    # Schema for an ask object that is used in multiple schemas above
+    ask:
+      type: object
+      properties:
+        price:
+          type: number
+          description: The ask price
+        qty:
+          type: number
+          description: The ask quantity
+      required:
+        - price
+        - qty
+    # Schema for a bid object that is used in multiple schemas above
+    bid:
+      type: object
+      properties:
+        price:
+          type: number
+          description: The bid price
+        qty:
+          type: number
+          description: The bid quantity
+      required:
+        - price
+        - qty
