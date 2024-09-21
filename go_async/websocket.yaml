@@ -1,4 +1,4 @@
-asyncapi: '2.0.0'
+asyncapi: '2.6.0'
 info:
   title: Simple WebSocket API
   version: 1.0.0
@@ -49,6 +49,3 @@ components:
           message:
             type: string
             description: The message content.
-tags:
-  - name: echo
-    description: Operations related to echoing messages.
