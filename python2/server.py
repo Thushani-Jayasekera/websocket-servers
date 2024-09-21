@@ -9,7 +9,7 @@ async def echo(websocket, path):
         logging.info(f"Received message: {message}")
         await websocket.send(message)
 
-start_server = websockets.serve(echo, "localhost", 8009)
+start_server = websockets.serve(echo, "0.0.0.0", 8009)
 
 async def main():
     server = await start_server
