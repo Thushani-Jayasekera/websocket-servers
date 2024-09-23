@@ -27,18 +27,6 @@ channels:
             message:
               type: string
               description: The message sent by the client.
-    publish:
-      operationId: sendMessage
-      summary: Send an echo message
-      message:
-        contentType: application/json
-        payload:
-          type: object
-          properties:
-            message:
-              type: string
-              description: The echoed message sent back to the client.
-
 components:
   messages:
     Message:
