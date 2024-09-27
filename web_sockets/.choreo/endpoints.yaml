@@ -35,28 +35,28 @@ endpoints:
 
   schemaFilePath: asyncapi.yaml
 
-- name: ProjectWebSocket
-  # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
-  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
-  # Allowed values: REST, GraphQL, GRPC. WS
-  type: WS
-  # +optional Network level visibility of this endpoint. Defaults to Project
-  # Accepted values: Project|Organization|Public.
-  networkVisibility: Project
-  # +optional Context (base path) of the API that is exposed via this endpoint.
-  # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+# - name: ProjectWebSocket
+#   # +required Numeric port value that gets exposed via this endpoint
+#   port: 8085
+#   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+#   # Allowed values: REST, GraphQL, GRPC. WS
+#   type: WS
+#   # +optional Network level visibility of this endpoint. Defaults to Project
+#   # Accepted values: Project|Organization|Public.
+#   networkVisibility: Project
+#   # +optional Context (base path) of the API that is exposed via this endpoint.
+#   # This is mandatory if the endpoint type is set to REST or GraphQL.
+#   context: /chat
 
-- name: OrgWebSocket - Org
-  # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
-  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
-  # Allowed values: REST, GraphQL, GRPC. WS
-  type: WS
-  # +optional Network level visibility of this endpoint. Defaults to Project
-  # Accepted values: Project|Organization|Public.
-  networkVisibility: Organization
-  # +optional Context (base path) of the API that is exposed via this endpoint.
-  # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+# - name: OrgWebSocket - Org
+#   # +required Numeric port value that gets exposed via this endpoint
+#   port: 8085
+#   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+#   # Allowed values: REST, GraphQL, GRPC. WS
+#   type: WS
+#   # +optional Network level visibility of this endpoint. Defaults to Project
+#   # Accepted values: Project|Organization|Public.
+#   networkVisibility: Organization
+#   # +optional Context (base path) of the API that is exposed via this endpoint.
+#   # This is mandatory if the endpoint type is set to REST or GraphQL.
+#   context: /chat
