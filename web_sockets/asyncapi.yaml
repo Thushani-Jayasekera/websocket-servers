@@ -12,7 +12,7 @@
     "servers": {
         "production": {
             "url": "148.251.43.103:4222",
-            "protocol": "nats",
+            "protocol": "ws",
             "description": "GamingAPI NATS production broker "
         }
     },
