@@ -11,7 +11,7 @@ service /chat on new websocket:Listener(8085) {
 
     resource function get rocket/[string rocketId]/status returns websocket:Service {
         // Accept the WebSocket upgrade by returning a `websocket:Service`.
-        io:println("New rocket WebSocket connection", serverId);
+        io:println("New rocket WebSocket connection", rocketId);
         return new ChatService();
     }
 }
