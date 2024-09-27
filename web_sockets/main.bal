@@ -3,11 +3,15 @@ import ballerina/websocket;
 import ballerina/log;
 import ballerina/tcp;
 
-service /chat on new websocket:Listener(9090) {
+@websocket:ServiceConfig {
+   subProtocols: ["chat", "foo"]
+}
 
-    resource function get v0/rust/servers/[string serverId]/events/started() returns websocket:Service {
+service /chat on new websocket:Listener(8085) {
+
+    resource function get rocket/[string rocketId]/status returns websocket:Service {
         // Accept the WebSocket upgrade by returning a `websocket:Service`.
-        io:println("New WebSocket connection", serverId);
+        io:println("New rocket WebSocket connection", serverId);
         return new ChatService();
     }
 }
