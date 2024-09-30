@@ -13,10 +13,16 @@ servers:
     url: api.spaceagency.example.com
     protocol: ws
 channels:
-  rocket/{rocketId}/status:
+  rocket/{rocketId}/status/{rocketId1}/{rocketId2}/{rocketId3}:
     parameters:
       rocketId:
         $ref: '#/components/parameters/rocketId'
+      rocketId1:
+        $ref: '#/components/parameters/rocketId2'
+      rocketId2:
+        $ref: '#/components/parameters/rocketId3'
+      rocketId3:
+        $ref: '#/components/parameters/rocketId4'
     subscribe:
       summary: Receive status updates for a rocket.
       message:
@@ -29,6 +35,18 @@ components:
         type: object
   parameters:
     rocketId:
+      description: The ID of the rocket.
+      schema:
+        type: string
+    rocketId2:
+      description: The ID of the rocket.
+      schema:
+        type: string
+    rocketId3:
+      description: The ID of the rocket.
+      schema:
+        type: string
+    rocketId4:
       description: The ID of the rocket.
       schema:
         type: string
