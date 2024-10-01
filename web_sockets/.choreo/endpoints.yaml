@@ -48,7 +48,7 @@ endpoints:
   networkVisibility: Public
   # +optional Context (base path) of the API that is exposed via this endpoint.
   # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+  context: /chat2
 
   schemaFilePath: asyncapi.yaml
 
@@ -66,7 +66,7 @@ endpoints:
   networkVisibility: Public
   # +optional Context (base path) of the API that is exposed via this endpoint.
   # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+  context: /chat3
 
   schemaFilePath: asyncapi.yaml
 
@@ -84,7 +84,7 @@ endpoints:
   networkVisibility: Public
   # +optional Context (base path) of the API that is exposed via this endpoint.
   # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+  context: /chat4
 
   schemaFilePath: asyncapi.yaml
 
@@ -101,7 +101,7 @@ endpoints:
   networkVisibility: Public
   # +optional Context (base path) of the API that is exposed via this endpoint.
   # This is mandatory if the endpoint type is set to REST or GraphQL.
-  context: /chat
+  context: /chat5
 
   schemaFilePath: asyncapi.yaml
 
