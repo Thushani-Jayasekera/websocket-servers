@@ -35,6 +35,76 @@ endpoints:
 
   schemaFilePath: asyncapi.yaml
 
+  endpoints:
+  # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+- name: WebSocket2
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8085
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC. WS
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Public
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /chat
+
+  schemaFilePath: asyncapi.yaml
+
+
+  endpoints:
+  # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+- name: WebSocket3
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8085
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC. WS
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Public
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /chat
+
+  schemaFilePath: asyncapi.yaml
+
+
+  endpoints:
+  # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+- name: WebSocket4
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8085
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC. WS
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Public
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /chat
+
+  schemaFilePath: asyncapi.yaml
+
+  endpoints:
+  # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+- name: WebSocket5
+  # +required Numeric port value that gets exposed via this endpoint
+  port: 8085
+  # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
+  # Allowed values: REST, GraphQL, GRPC. WS
+  type: WS
+  # +optional Network level visibility of this endpoint. Defaults to Project
+  # Accepted values: Project|Organization|Public.
+  networkVisibility: Public
+  # +optional Context (base path) of the API that is exposed via this endpoint.
+  # This is mandatory if the endpoint type is set to REST or GraphQL.
+  context: /chat
+
+  schemaFilePath: asyncapi.yaml
+
 # - name: ProjectWebSocket
 #   # +required Numeric port value that gets exposed via this endpoint
 #   port: 8085
