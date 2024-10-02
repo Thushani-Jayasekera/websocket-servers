@@ -39,7 +39,7 @@ endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
 - name: WebSocket2
   # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
+  port: 8086
   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
   # Allowed values: REST, GraphQL, GRPC. WS
   type: WS
@@ -57,7 +57,7 @@ endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
 - name: WebSocket3
   # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
+  port: 8087
   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
   # Allowed values: REST, GraphQL, GRPC. WS
   type: WS
@@ -75,7 +75,7 @@ endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
 - name: WebSocket4
   # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
+  port: 8088
   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
   # Allowed values: REST, GraphQL, GRPC. WS
   type: WS
@@ -92,7 +92,7 @@ endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
 - name: WebSocket5
   # +required Numeric port value that gets exposed via this endpoint
-  port: 8085
+  port: 8089
   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
   # Allowed values: REST, GraphQL, GRPC. WS
   type: WS

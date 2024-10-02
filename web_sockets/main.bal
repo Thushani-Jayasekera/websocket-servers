@@ -9,9 +9,41 @@ import ballerina/tcp;
 
 service /chat on new websocket:Listener(8085) {
 
-    resource function get rocket/[string rocketId]/status/[string rocketId1]/[string rocketId2]/[string rocketId3]() returns websocket:Service {
+     resource function get rocket/[string rocketId]/status() returns websocket:Service {
         // Accept the WebSocket upgrade by returning a `websocket:Service`.
-        io:println("New rocket WebSocket connection", rocketId);
+        io:println("New sever WebSocket connection", rocketId);
+        return new ChatService();
+    }
+}
+
+service /chat2 on new websocket:Listener(8086) {
+     resource function get rocket/[string rocketId]/status() returns websocket:Service {
+        // Accept the WebSocket upgrade by returning a `websocket:Service`.
+        io:println("New sever WebSocket connection", rocketId);
+        return new ChatService();
+    }
+}
+
+service /chat3 on new websocket:Listener(8087) {
+     resource function get rocket/[string rocketId]/status() returns websocket:Service {
+        // Accept the WebSocket upgrade by returning a `websocket:Service`.
+        io:println("New sever WebSocket connection", rocketId);
+        return new ChatService();
+    }
+}
+
+service /chat4 on new websocket:Listener(8088) {
+     resource function get rocket/[string rocketId]/status() returns websocket:Service {
+        // Accept the WebSocket upgrade by returning a `websocket:Service`.
+        io:println("New sever WebSocket connection", rocketId);
+        return new ChatService();
+    }
+}
+
+service /chat5 on new websocket:Listener(8089) {
+     resource function get rocket/[string rocketId]/status() returns websocket:Service {
+        // Accept the WebSocket upgrade by returning a `websocket:Service`.
+        io:println("New sever WebSocket connection", rocketId);
         return new ChatService();
     }
 }
