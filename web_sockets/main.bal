@@ -54,15 +54,15 @@ service class ChatService {
     // This `remote function` is triggered when a new message is received
     // from a client. It accepts `anydata` as the function argument. The received data 
     // will be converted to the data type stated as the function argument.
-    remote isolated function onTextMessage(websocket:Caller caller, string text) returns websocket:Error? {
+    remote isolated function onMessage(websocket:Caller caller, string text) returns websocket:Error? {
         io:println(text, caller.getConnectionId());
-        check caller->writeTextMessage("Hello!, How are you?");
+        check caller->writeMessage("Hello!, How are you?");
     }
 
-    remote isolated function onBinaryMessage(websocket:Caller caller, byte[] data) returns websocket:Error? {
-        io:println("Binary data", data);
-        check caller->writeBinaryMessage(data);
-    }
+    // remote isolated function onBinaryMessage(websocket:Caller caller, byte[] data) returns websocket:Error? {
+    //     io:println("Binary data", data);
+    //     check caller->writeBinaryMessage(data);
+    // }
 
     remote function onPing(websocket:Caller caller, byte[] data) returns error? {
         io:println(string `Ping received with data: ${data.toBase64()}`);
