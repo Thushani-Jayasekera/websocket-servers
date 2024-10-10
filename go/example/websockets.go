@@ -9,8 +9,8 @@ import (
 )
 
 var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
+	ReadBufferSize:  1024 * 1024 * 1024,
+	WriteBufferSize: 1024 * 1024 * 1024,
 	// CheckOrigin can be added if you need to handle CORS.
 	CheckOrigin: func(r *http.Request) bool {
 		return true // Adjust this according to your CORS policy
