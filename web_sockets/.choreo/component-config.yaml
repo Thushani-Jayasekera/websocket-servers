@@ -20,7 +20,7 @@ spec:
       # +optional The path to the schema definition file. Defaults to wildcard route if not specified.
       # This is only applicable to REST and WS endpoint types.
       # The path should be relative to the Docker context.
-      schemaFilePath: greeting_openapi.yaml
+      schemaFilePath: asyncapi.yaml
   # +optional Outgoing connection details for the component.
   outbound:
     # +optional Defines the service references from the Internal Marketplace.
