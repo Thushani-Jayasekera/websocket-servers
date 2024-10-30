@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,24 +8,23 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"golang.org/x/oauth2/clientcredentials"
 )
 
 func main() {
 	// Read environment variables
 	serviceURL := os.Getenv("SVC_URL")
-	consumerKey := os.Getenv("CONSUMER_KEY")
-	consumerSecret := os.Getenv("CONSUMER_SECRET")
-	tokenUrl := os.Getenv("TOKEN_URL")
+	// consumerKey := os.Getenv("CONSUMER_KEY")
+	// consumerSecret := os.Getenv("CONSUMER_SECRET")
+	// tokenUrl := os.Getenv("TOKEN_URL")
 	choreoApiKey := os.Getenv("CHOREO_API_KEY")
 
 	// Configure OAuth2 client credentials
-	clientCredsConfig := clientcredentials.Config{
-		ClientID:     consumerKey,
-		ClientSecret: consumerSecret,
-		TokenURL:     tokenUrl,
-	}
-	client := clientCredsConfig.Client(context.Background())
+	// clientCredsConfig := clientcredentials.Config{
+	// 	ClientID:     consumerKey,
+	// 	ClientSecret: consumerSecret,
+	// 	TokenURL:     tokenUrl,
+	// }
+	// client := clientCredsConfig.Client(context.Background())
 
 	fmt.Println("Connecting to service:", serviceURL, choreoApiKey)
 
