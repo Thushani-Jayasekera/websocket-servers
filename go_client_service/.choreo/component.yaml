@@ -25,20 +25,19 @@ endpoints:
     # +optional Path to the schema definition file. Defaults to wild card route if not provided
     # This is only applicable to REST endpoint types.
     # The path should be relative to the docker context.
-
   # +optional Outgoing connection details for the component.
-    dependencies:
-      serviceReferences:
-      - name: choreo:///thushani/websocketproject/componentyaml/aa36e/v1/PUBLIC
-        connectionConfig: 01ef96b0-a944-1228-91e4-ad082690e0d9
-        env:
-        - from: ServiceURL
-          to: SVC_URL
-        - from: ConsumerKey
-          to: CONSUMER_KEY
-        - from: ConsumerSecret
-          to: CONSUMER_SECRET
-        - from: TokenURL
-          to: TOKEN_URL
-        - from: ChoreoAPIKey
-          to: CHOREO_API_KEY
+dependencies:
+  serviceReferences:
+  - name: choreo:///thushani/websocketproject/componentyaml/aa36e/v1/PUBLIC
+    connectionConfig: 01ef96b0-a944-1228-91e4-ad082690e0d9
+    env:
+    - from: ServiceURL
+      to: SVC_URL
+    - from: ConsumerKey
+      to: CONSUMER_KEY
+    - from: ConsumerSecret
+      to: CONSUMER_SECRET
+    - from: TokenURL
+      to: TOKEN_URL
+    - from: ChoreoAPIKey
+      to: CHOREO_API_KEY
