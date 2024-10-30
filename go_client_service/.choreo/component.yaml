@@ -30,7 +30,7 @@ endpoints:
     dependencies:
       serviceReferences:
       - name: choreo:///thushani/websocketproject/componentyaml/aa36e/v1/PUBLIC
-        connectionConfig: 01ef96a6-2322-1de8-a67c-8cbefeb5a606
+        connectionConfig: 01ef96b0-a944-1228-91e4-ad082690e0d9
         env:
         - from: ServiceURL
           to: SVC_URL
