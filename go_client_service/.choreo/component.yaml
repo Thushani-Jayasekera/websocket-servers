@@ -27,17 +27,17 @@ endpoints:
     # The path should be relative to the docker context.
   # +optional Outgoing connection details for the component.
 dependencies:
-  serviceReferences:
-  - name: choreo:///thushani/websocketproject/componentyaml/aa36e/v1/PUBLIC
-    connectionConfig: 01ef96b0-a944-1228-91e4-ad082690e0d9
-    env:
-    - from: ServiceURL
-      to: SVC_URL
-    - from: ConsumerKey
-      to: CONSUMER_KEY
-    - from: ConsumerSecret
-      to: CONSUMER_SECRET
-    - from: TokenURL
-      to: TOKEN_URL
-    - from: ChoreoAPIKey
-      to: CHOREO_API_KEY
+    serviceReferences:
+    - name: choreo:///choreopdpe2edev/thushani/gowsmultivisibility/aa36e/v1/PROJECT
+      connectionConfig: 01f00b04-0e87-12d0-a937-928574a688ac
+      env:
+      - from: ServiceURL
+        to: SVC_URL
+      - from: ConsumerKey
+        to: CONSUMER_KEY
+      - from: ConsumerSecret
+        to: CONSUMER_SECRET
+      - from: TokenURL
+        to: TOKEN_URL
+      - from: ChoreoAPIKey
+        to: CHOREO_API_KEY
