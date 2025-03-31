@@ -17,7 +17,7 @@ func main() {
 	serviceURL := os.Getenv("SVC_URL")
 	choreoApiKey := os.Getenv("CHOREO_API_KEY")
 
-	fmt.Println("Connecting to service:", serviceURL, token)
+	fmt.Println("Connecting to service:", serviceURL)
 
 	// Configure headers, adding the API key
 	headers := http.Header{
