@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,7 +8,6 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"golang.org/x/oauth2/clientcredentials"
 )
 
 func main() {
