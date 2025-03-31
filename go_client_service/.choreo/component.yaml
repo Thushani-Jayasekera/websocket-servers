@@ -28,10 +28,10 @@ endpoints:
   # +optional Outgoing connection details for the component.
 dependencies:
     serviceReferences:
-    - name: choreo:///choreopdpe2edev/thushani/gowsmultivisibility/aa36e/v1/ORGANIZATION
-      connectionConfig: 01f00b05-9f12-13d6-9384-84fe74fb4104
+    - name: choreo:///choreopdpe2estage/thushani2/go/dedc8/v1/PROJECT
+      connectionConfig: 01f00df2-771b-1266-9d85-28fb7a1680ae
       env:
       - from: ServiceURL
-        to: CHOREO_GOWEBSOCKETINTERNAL_SERVICEURL
+        to: SVC_URL
       - from: ChoreoAPIKey
-        to: CHOREO_GOWEBSOCKETINTERNAL_CHOREOAPIKEY
+        to: CHOREO_API_KEY
