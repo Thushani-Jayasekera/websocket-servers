@@ -32,12 +32,6 @@ dependencies:
       connectionConfig: 01f00b05-9f12-13d6-9384-84fe74fb4104
       env:
       - from: ServiceURL
-        to: SVC_URL
-      - from: ConsumerKey
-        to: CONSUMER_KEY
-      - from: ConsumerSecret
-        to: CONSUMER_SECRET
-      - from: TokenURL
-        to: TOKEN_URL
+        to: CHOREO_GOWEBSOCKETINTERNAL_SERVICEURL
       - from: ChoreoAPIKey
-        to: CHOREO_API_KEY
+        to: CHOREO_GOWEBSOCKETINTERNAL_CHOREOAPIKEY
