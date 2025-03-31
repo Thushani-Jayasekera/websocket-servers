@@ -15,31 +15,13 @@ import (
 func main() {
 	// Read environment variables
 	serviceURL := os.Getenv("SVC_URL")
-	consumerKey := os.Getenv("CONSUMER_KEY")
-	consumerSecret := os.Getenv("CONSUMER_SECRET")
-	tokenUrl := os.Getenv("TOKEN_URL")
 	choreoApiKey := os.Getenv("CHOREO_API_KEY")
 
-	// Configure OAuth2 client credentials
-	clientCredsConfig := clientcredentials.Config{
-		ClientID:     consumerKey,
-		ClientSecret: consumerSecret,
-		TokenURL:     tokenUrl,
-	}
-	// Retrieve the access token
-	ctx := context.Background()
-	token, err := clientCredsConfig.Token(ctx)
-	if err != nil {
-		log.Fatal("Error getting token:", err)
-		return
-	}
 	fmt.Println("Connecting to service:", serviceURL, token)
 
-	bearerToken := `Bearer` + token.AccessToken
 	// Configure headers, adding the API key
 	headers := http.Header{
 		"Choreo-API-Key": []string{choreoApiKey},
-		"Authorization":  []string{bearerToken},
 	}
 
 	// Establish the WebSocket connection using DefaultDialer
