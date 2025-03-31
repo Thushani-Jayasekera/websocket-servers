@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// Establish the WebSocket connection using DefaultDialer
-	connectionURL := serviceURL + "/echo"
+	connectionURL := serviceURL + "/new"
 	for {
 		// Attempt to connect
 		conn, _, err := websocket.DefaultDialer.Dial(connectionURL, headers)
